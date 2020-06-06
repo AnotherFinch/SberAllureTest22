@@ -34,6 +34,11 @@ public class StepFeatures {
     public void updateCheckFamilyBox(){
         mortgageSteps.youngFamily();
     }
+    @When("Заполнить поля")
+    public void fillFields(){
+        mortgageSteps.mortgageStepsConf();
+    }
+
 
 
 

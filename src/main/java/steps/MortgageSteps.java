@@ -115,8 +115,8 @@ public class MortgageSteps {
 
 	@Step("Проверка полей")
 	public void checkCheck() {
-		Assert.assertEquals("Стоимость квартиры не совпадает", "4 403 000 ₽", getAmountOfCredit()); //2 122 000 ₽
-		Assert.assertEquals("Сумма ежемесячного дохода не совпадает", "44 337 ₽", getMonthlyPayment()); // 16 467
+		Assert.assertEquals("Стоимость квартиры не совпадает", "2 122 000 ₽", getAmountOfCredit());
+		Assert.assertEquals("Сумма ежемесячного дохода не совпадает", "16 467 ₽", getMonthlyPayment());
 		Assert.assertEquals("Сумма необходимого дохода не совпадет", "27 445 ₽", getRequiredIncome());
 		Assert.assertEquals("Процентная ставка по ипотеке не совпадает", "11 %", getRate());
 	}
