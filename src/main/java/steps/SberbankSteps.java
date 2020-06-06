@@ -6,7 +6,6 @@ import pages.SberbankPage;
 
 import static steps.BaseSteps.getDriver;
 
-
 public class SberbankSteps {
 
 
@@ -20,6 +19,8 @@ public class SberbankSteps {
 
     @Step("Клик по вкладке готовое жилье")
     public void MortgageFinishedButton(){
+        Actions actions = new Actions(getDriver());
+        actions.moveToElement(sberbankPage.mortgageFinishedButton).build().perform();
         sberbankPage.mortgageFinishedButton.click();
     }
 

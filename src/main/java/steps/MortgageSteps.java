@@ -1,11 +1,17 @@
 package steps;
 
+import com.google.common.base.Function;
 import io.qameta.allure.Step;
+import org.junit.Assert;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
 import pages.MortgagePage;
 
+import java.util.Map;
+
 import static steps.BaseSteps.getDriver;
+import static steps.BaseSteps.getWait;
 
 public class MortgageSteps{
 
@@ -55,10 +61,34 @@ public class MortgageSteps{
         getDriver().switchTo().frame(mortgagePage.iframe);
         mortgagePage.youngFamilyDiscount.click();
     }
+//
+    @Step("Заполнить поля:")
+    public MortgageSteps fillFields(Map<String, String> fields) {
+        MortgagePage mortgagePage = new MortgagePage();
+        mortgagePage.scrollIntoView(0, 1500);
+        mortgagePage.waitEnableFrame(mortgagePage.iframe);
+        fields.forEach(this::fillField);
+        return this;
+    }
+
+    @Step("поле {field} заполняется значением {value}")
+    private void fillField(String field, String value) {
+        new MortgagePage().fillField(field, value);
+    }
+
+
 
     @Step("Проверка, что появилась возможность подтвердить доход")
     public Boolean canConfirm() {
+        mortgagePage.scrollIntoView(0, 1500);
+        mortgagePage.waitEnableFrame(mortgagePage.iframe);
         return mortgagePage.canConfirmIncome.isEnabled();
+    }
+
+    @Step ("Заполнение")
+    public void mortgageStepsConf() {
+
+        getWait().until((Function<? super WebDriver, Boolean>) driver -> canConfirm());
     }
 
     @Step("Получить суммы ипотеки")
@@ -86,5 +116,15 @@ public class MortgageSteps{
         getDriver().switchTo().frame(mortgagePage.iframe);
     }
 
-
+    @Step("Проверка полей")
+    public void checkCheck() {
+        Assert.assertEquals("Стоимость квартиры не совпадает",
+                "5 180 000 ₽", getAmountOfCredit());
+        Assert.assertEquals("Сумма ежемесячного дохода не совпадает",
+                "18 937 ₽", getMonthlyPayment());
+        Assert.assertEquals("Сумма необходимого дохода не совпадет",
+                "31 561 ₽", getRequiredIncome());
+        Assert.assertEquals("Процентная ставка по ипотеке не совпадает",
+                "11 %", getRate());
+    }
 }

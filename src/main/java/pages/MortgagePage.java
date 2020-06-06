@@ -2,9 +2,7 @@ package pages;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-
 public class MortgagePage extends BasePage {
-
 
     @FindBy(xpath = "//iframe[@id='iFrameResizer0']")
     public WebElement iframe;
@@ -44,6 +42,27 @@ public class MortgagePage extends BasePage {
 
     @FindBy(xpath = "//span[@data-test-id='rate']")
     public WebElement rate;
+
+    private void fillField(WebElement element, String value) {
+        waitUntilClickable(element);
+        clearField(element);
+        clickElement(element);
+        element.sendKeys(value);
+    }
+
+    public void fillField(String fieldName, String value) {
+        switch (fieldName) {
+            case "Стоимость":
+                fillField(estateCost, value);
+                break;
+            case "Взнос":
+                fillField(initialFee, value);
+                break;
+            case "Срок":
+                fillField(creditTerm, value);
+                break;
+        }
+    }
 
 
 }
