@@ -11,7 +11,6 @@ public class BaseTest extends BaseSteps {
     @Test
     @DisplayName("Ипотека в сбербанке")
     public void Sberbank() throws InterruptedException {
-        WebDriverWait wait = new WebDriverWait(getDriver(), 30);
         SberbankSteps sberbankSteps = new SberbankSteps();
         MortgageSteps mortgageSteps = new MortgageSteps();
 
@@ -23,7 +22,7 @@ public class BaseTest extends BaseSteps {
         mortgageSteps.inputInitialFee();
         mortgageSteps.inputCreditTerm();
         mortgageSteps.paid();
-        mortgageSteps.mortgageStepsConf();
+        mortgageSteps.canConfirm();
         mortgageSteps.youngFamily();
         mortgageSteps.checkCheck();
     }

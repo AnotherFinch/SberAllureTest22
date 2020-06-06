@@ -19,7 +19,7 @@ public class MortgagePage extends BasePage {
     @FindBy(xpath = "//div[div[text()='Молодая семья']]//label")
     public WebElement youngFamilyDiscount;
 
-    @FindBy(xpath = "//div[text()='Есть возможность подтвердить доход справкой']")
+    @FindBy(xpath = "//div[@class=\"dcCalc_switch-tablet__title\" and contains(text(),'Есть возможность подтвердить доход справкой')]/parent::div")
     public WebElement canConfirmIncome;
 
     @FindBy(xpath = "//div[div[text()='Есть зарплатная карта Сбербанка']]//label")
@@ -28,7 +28,7 @@ public class MortgagePage extends BasePage {
     @FindBy(xpath = "//div[@class='dcCalc_disclaimer']")
     public WebElement viewPort1;
 
-    @FindBy(xpath = "//h2[contains(text(),'решение')]")
+    @FindBy(xpath = "//h2[contains(text(),'подать заявку')]")
     public WebElement viewPort2;
 
     @FindBy(xpath = "//span[@data-test-id='amountOfCredit']")
